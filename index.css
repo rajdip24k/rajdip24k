@@ -1,0 +1,126 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+.logo{
+    width: 110px;
+}
+
+.nav-ittms{
+    padding: 0px 20px;
+}
+
+.nav-ittms > ul{
+    display: flex;
+    font-size: 24px;
+    list-style: none;
+}
+
+.nav-ittms > ul > li {
+ padding: 10px;
+ margin: 10px;
+}
+
+.Search{
+  padding: 10px;
+}
+.res-card{
+    padding: 5px;
+    width: 200px;
+    /* Automaticlly cards takes height so need to give it*/
+    /* height: 480px; */
+    box-shadow: black;
+    margin: 10px;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-sizing: border-box;
+    color: black;
+    text-decoration: none;
+    transition: all 0.05s ease 0s;
+    /* object-fit: cover; */
+
+}
+
+
+
+/* h3:link{
+    color: red;
+} */
+/* .res-card h3 {
+    color: brown;
+    text-decoration: none;
+} */
+
+.res-card:hover{
+border: 1px solid black;
+cursor: pointer;
+}
+
+.res-log{
+    width: 190px;
+}
+
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+    /* padding: 10px; */
+}
+
+.filter-btn{
+    margin: 10px;
+}
+/* .filter{
+    margin: 20px;
+} */
+
+.loader {
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #3498db;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s linear infinite;
+    position: relative;
+    left: 20%;
+}
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shimmer-card{
+    width: 200px;
+    margin: 10px;
+    height: 480px;
+    background-color: rgb(240, 240, 240);
+}
+
+.login{
+    padding: 0px 20px;
+    cursor: pointer;
+}
+
+.user-card{
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.flight-card{
+    width: 200px;
+    /* height: 310px; */
+    margin: 20px;
+    padding: 20px;
+    box-shadow: black;
+    border: 1px solid black;
+}
+
+.flight-inner-card{
+    width: 500px;
+    height: 150px;
+    padding: 40px;
+    margin: 40px;
+    box-shadow: black;
+    border-radius: 30%;
+}
