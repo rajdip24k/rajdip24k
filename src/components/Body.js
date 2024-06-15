@@ -20,7 +20,7 @@ export const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.61610&lng=73.72860&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     console.log("Practicejson",json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
@@ -60,15 +60,17 @@ if(onlineStatus === false) {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
+      <div className="filter m-4 p-4">
         <input
           type="text"
           value={seachText}
+          className="border border-solid border-black"
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
         />
         <button
+        className="px-4 py-2 bg-green-100 m-4 rounded-lg  hover:bg-violet-600"
           onClick={() =>{
            const searchFinal =listOfRestaurants.filter((res) => res.info.name.toLowerCase().includes(seachText.toLowerCase()))
            setFilterRestaurant(searchFinal) 
@@ -79,7 +81,7 @@ if(onlineStatus === false) {
         </button>
 
         <button
-          className="filter-btn"
+          className="filter-btn px-4 bg-green-100 py-2 rounded-lg"
           //   Below code gives us filtered avgRating greather than 4
           onClick={() => {
             const listOfRest = listOfRestaurants.filter(
@@ -94,13 +96,13 @@ if(onlineStatus === false) {
           Top Rated Restaurants
         </button>
 
-      <button onClick={()=>{
+      <button className="px-4 bg-green-100 py-2 m-2 rounded-lg" onClick={()=>{
         const lessRatedrest = listOfRestaurants.filter((item)=>item.info.avgRating<4);
         setFilterRestaurant(lessRatedrest)
       }}>Less Rated Restaurant</button>
 
       </div>
-      <div className="res-container">
+      <div className="res-container flex flex-wrap">
         {filterRestaurant.map((restaurant, key) => (
          <Link to={"/restaurant/"+restaurant.info.id} key={key}>         
          <RestaurantCard

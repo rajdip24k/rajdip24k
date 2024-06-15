@@ -9,9 +9,9 @@ const RestaurantCard =(props)=>{
 
     // console.log("name",name)
     return(
-        <div className="res-card" style={{backgroundColor:'#f0f0f0'}}>
-        <img alt="biryani" className="res-log" src={CDN_URL + cloudinaryImageId}/>
-        <h3>{name}</h3>
+        <div className="res-card m-4 p-4 w-[235px] rounded-lg bg-gray-100 hover:bg-green-100">
+        <img alt="biryani" className="res-log rounded-lg" src={CDN_URL + cloudinaryImageId}/>
+        <h3 className="font-bold py-4 text-xl">{name}</h3>
         <h4>{cuisines.join(", ")}</h4>
         <h4>{avgRating} Stars</h4>
         <h4>{costForTwo}</h4>

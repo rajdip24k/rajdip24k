@@ -18,18 +18,18 @@ useEffect(()=>{
 })
 
     return(
-      <div className="header">
+      <div className="header flex justify-between bg-pink-100 dark:bg-slate-800 shadow-lg mb-2 sm:bg-green-950 lg:bg-green-100">
        <div className="logo-container">
-        <img className="logo" src={LOGO_URL}/>
+        <img className="logo w-28" src={LOGO_URL}/>
        </div>
-       <div className="nav-ittms">
-        <ul>
-          <li> Status : {onlinestatus ? '🟢' : '🔴'}</li>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/groccery">Groccery</Link></li>
-          <li><Link to="/about">About Us</Link></li>
-          <li><Link to="/contact">Contact Us</Link></li>
-          <li><Link to="/cart">Cart</Link></li>
+       <div className="nav-ittms flex items-center">
+        <ul className="flex p-4 m-4">
+          <li className="px-2"> Status : {onlinestatus ? '🟢' : '🔴'}</li>
+          <li className="px-2"><Link to="/">Home</Link></li>
+          <li className="px-2"><Link to="/groccery">Groccery</Link></li>
+          <li className="px-2"><Link to="/about">About Us</Link></li>
+          <li className="px-2"><Link to="/contact">Contact Us</Link></li>
+          <li className="px-2"><Link to="/cart">Cart</Link></li>
 
           {
            <button className="login" onClick={()=>{btnNameReact == "login" ? setBtnNameReact("Logout") : 

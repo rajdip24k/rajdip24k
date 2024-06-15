@@ -34,13 +34,13 @@ const restMenu = useRestMenu(resId);
     console.log("itemCard",itemCards);
 
     return(
-        <div>
-            <h1>{name}</h1>
-            <h3>{cuisines.join(", ")}</h3>
-            <h3>{costForTwoMessage}</h3>
+        <div className="m-4 p-14 w-[500px] bg-green-100 border rounded-2xl shadow-2xl">
+            <h1 className="font-bold text-2xl">{name}</h1>
+            <h3 className="text-orange-500">{cuisines.join(",")}</h3>
+            <h3 className="font-bold">{costForTwoMessage}</h3>
             <ul>
                 {
-                    itemCards.map((item)=><li key={item.card.info.id}>{item.card.info.name}</li>)
+                   itemCards && itemCards.map((item)=><li key={item.card.info.id} className="font-semibold">{item.card.info.name},</li>)
                 }
             </ul>
         </div>

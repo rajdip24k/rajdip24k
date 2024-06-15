@@ -1,4 +1,9 @@
-.header{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* .header{
     display: flex;
     justify-content: space-between;
     border: 1px solid black;
@@ -24,12 +29,12 @@
 
 .Search{
   padding: 10px;
-}
-.res-card{
+} */
+/* .res-card{
     padding: 5px;
     width: 200px;
-    /* Automaticlly cards takes height so need to give it*/
-    /* height: 480px; */
+    Automaticlly cards takes height so need to give it
+    height: 480px;
     box-shadow: black;
     margin: 10px;
     border-radius: 1.5rem;
@@ -38,9 +43,9 @@
     color: black;
     text-decoration: none;
     transition: all 0.05s ease 0s;
-    /* object-fit: cover; */
+     object-fit: cover;
 
-}
+} */
 
 
 
@@ -51,7 +56,7 @@
     color: brown;
     text-decoration: none;
 } */
-
+/* 
 .res-card:hover{
 border: 1px solid black;
 cursor: pointer;
@@ -59,21 +64,21 @@ cursor: pointer;
 
 .res-log{
     width: 190px;
-}
+} */
 
-.res-container{
+/* .res-container{
     display: flex;
     flex-wrap: wrap;
-    /* padding: 10px; */
-}
+    padding: 10px;
+} */
 
-.filter-btn{
+/* .filter-btn{
     margin: 10px;
-}
+} */
 /* .filter{
     margin: 20px;
 } */
-
+/* 
 .loader {
     border: 10px solid #f3f3f3;
     border-top: 10px solid #3498db;
@@ -83,13 +88,13 @@ cursor: pointer;
     animation: spin 1s linear infinite;
     position: relative;
     left: 20%;
-}
-
+} */
+/* 
 .shimmer-container{
     display: flex;
     flex-wrap: wrap;
-}
-
+} */
+/* 
 .shimmer-card{
     width: 200px;
     margin: 10px;
@@ -105,17 +110,17 @@ cursor: pointer;
 .user-card{
     padding: 10px;
     border: 1px solid black;
-}
-
+} */
+/* 
 .flight-card{
     width: 200px;
-    /* height: 310px; */
+    height: 310px;
     margin: 20px;
     padding: 20px;
     box-shadow: black;
     border: 1px solid black;
-}
-
+} */
+/* 
 .flight-inner-card{
     width: 500px;
     height: 150px;
@@ -123,4 +128,4 @@ cursor: pointer;
     margin: 40px;
     box-shadow: black;
     border-radius: 30%;
-}
+} */
