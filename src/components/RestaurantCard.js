@@ -20,3 +20,21 @@ const RestaurantCard =(props)=>{
     )
 }
 export default RestaurantCard;
+
+// Above 1 is a Actual/original compo below we are only enhancing 
+// Below compo returns a new compo with promoted/enhancing label on it
+export const withpromotedLabel =(RestaurantCard)=>{
+// Below return(props)=>{ this is nothing but a returning a new component with promoted/enhancing lable on it
+// and returning under the body compo using ternary operator
+// We rec eive a data with the prop and we are accssing under the new compo
+// and same data into our  <RestaurantCard {...props}/> 
+// by desturcturing we are passing our all the data as prop
+    return(props)=>{
+        return(
+            <div>
+                <label className="absolute bg-black text-white border rounded-lg m-2 p-2">₹350 for two</label>
+                <RestaurantCard {...props}/>
+            </div>
+        )
+    }
+}

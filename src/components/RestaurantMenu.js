@@ -3,47 +3,70 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { Menu_URL } from "../utils/constants";
 import useRestMenu from "../utils/useRestMenu";
+import RestCategory from "./RestCategory";
 
+const RestaurantMenu = () => {
+  const [showItem, setShowItem] = useState(false);
+  // const [restMenu,setRestMenu] = useState(null);
+  const { resId } = useParams();
+  console.log("params", resId);
 
-const RestaurantMenu = () =>{
-// const [restMenu,setRestMenu] = useState(null);
+  const restMenu = useRestMenu(resId);
 
-const {resId} = useParams();
-console.log("params",resId);
+  // useEffect(()=>{
+  //   fetchMenu();
+  // },[]);
 
-const restMenu = useRestMenu(resId);
+  // const fetchMenu = async () => {
+  //   const data =
+  // await fetch(Menu_URL+resId);
+  //             //  https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.61610&lng=73.72860&restaurantId
+  //   const json = await data.json();
+  //   console.log("json2",json)
+  //   setRestMenu(json.data)
+  // }
 
-    // useEffect(()=>{
-    //   fetchMenu();
-    // },[]);
+  if (restMenu === null) return <Shimmer />;
 
-    // const fetchMenu = async () => {
-    //   const data =
-    // await fetch(Menu_URL+resId);
-    //             //  https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.61610&lng=73.72860&restaurantId
-    //   const json = await data.json();
-    //   console.log("json2",json)
-    //   setRestMenu(json.data)
-    // } 
+  const { name, cuisines, costForTwoMessage } =
+    restMenu?.cards[2]?.card?.card?.info;
 
-    if(restMenu === null) return <Shimmer/>;
+  const { itemCards } =
+    restMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+      ?.card;
+  console.log("itemCard", itemCards);
 
-    const {name,cuisines,costForTwoMessage} = restMenu?.cards[2]?.card?.card?.info;
+  console.log(
+    "itemCard>>>>>>",
+    restMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+  );
 
-    const {itemCards} = restMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-    console.log("itemCard",itemCards);
+  const category =
+    restMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c.card.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
-    return(
-        <div className="m-4 p-14 w-[500px] bg-green-100 border rounded-2xl shadow-2xl">
-            <h1 className="font-bold text-2xl">{name}</h1>
-            <h3 className="text-orange-500">{cuisines.join(",")}</h3>
-            <h3 className="font-bold">{costForTwoMessage}</h3>
-            <ul>
-                {
-                   itemCards && itemCards.map((item)=><li key={item.card.info.id} className="font-semibold">{item.card.info.name},</li>)
-                }
-            </ul>
-        </div>
-    )
-}
+  console.log("category", category);
+
+  return (
+    <div className="  border rounded-2xl shadow-2xl text-center">
+      <h1 className="font-bold text-2xl my-6">{name}</h1>
+      <h3 className="text-orange-500 text-xl">{cuisines.join("")}</h3>
+      <p className="font-bold text-xl">Cost for two : {costForTwoMessage}</p>
+      {/*Below  Categories accordion */}
+      <div>
+        {category.map((c,index)=> (
+          <RestCategory
+            c={c}
+            showItem={index === showItem ? true : false}
+            setShowItem={() => index===showItem ? setShowItem(!index) : setShowItem(index)}
+            // notsetShowItem={() => setShowItem(!index)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 export default RestaurantMenu;

@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import React, { useContext, useEffect, useState } from "react";
+import RestaurantCard, { withpromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import Contact from "./Contact";
 import useOnlineStatus from "../utils/useOnelineStatus";
+import UserContext from "../utils/userContext";
 
 export const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
   const [filterRestaurant,setFilterRestaurant] = useState([]);
   const [seachText, setSearchText] = useState("");
 
+// Below compo has a pronmoted label on it
+// withpromotedLabel is a HOC in we have passed down a RestaurentCard compo
+// withpromotedLabel and it will return a new compo which has a label inside it
+const RestWithPromotedCard = withpromotedLabel(RestaurantCard);
 
+console.log("listOfRestaurants",listOfRestaurants)
 
  
 
@@ -20,7 +26,7 @@ export const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     console.log("Practicejson",json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
@@ -53,8 +59,8 @@ if(onlineStatus === false) {
     </div>
   );
 }
-
-
+// We are accesssing SetUser and loggeInUser to app and setting upon the Onchange event
+const {setUser, loggedInUser} = useContext(UserContext)
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -101,13 +107,27 @@ if(onlineStatus === false) {
         setFilterRestaurant(lessRatedrest)
       }}>Less Rated Restaurant</button>
 
+<input type="text" className="px-4 bg-green-100 py-2 m-2 rounded-lg" 
+value={loggedInUser} onChange={(e)=>setUser(e.target.value)}/>
+
       </div>
       <div className="res-container flex flex-wrap">
         {filterRestaurant.map((restaurant, key) => (
          <Link to={"/restaurant/"+restaurant.info.id} key={key}>         
-         <RestaurantCard
+         {/* <RestaurantCard
             resData={restaurant}
-          />
+          /> */}
+          {/* For HOC for the promoted label we are writing the condition
+          if promoted label is present then 
+          it will be return this compo RestWithPromotedCard else RestaurantCard
+          also we have to pass that dat into our compo as prop
+          */}
+          {
+            restaurant.info.costForTwo == "₹350 for two" ? 
+            <RestWithPromotedCard resData={restaurant}/> :  <RestaurantCard
+            resData={restaurant}
+          /> 
+          }
           </Link>
         
         )

@@ -11,7 +11,8 @@ const useRestMenu =(resId)=>{
    const fetchData =async ()=>{
     const data = await fetch(Menu_URL+resId);
     const json = await data.json();
-    setRestMenu(json.data)
+    console.log("json-Menuuuu",json)
+    setRestMenu(json.data);
    }
 
    return restMenu;

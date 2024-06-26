@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import {Header} from "./components/Header";
 import { Body } from "./components/Body";
@@ -9,6 +9,7 @@ import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Cart from "./components/Cart";
 import FlightMenu from "./components/FlightMenu";
+import UserContext from "./utils/userContext";
 // import Groccery from "./components/Groccery"; 
 
 
@@ -16,10 +17,31 @@ const Groccery = lazy(()=>import("./components/Groccery"));
 
 const AppLayout =()=>{
   // console.log("Header",<Header/>)
+const [user,setUser] = useState("");
+
+useEffect(()=>{
+  // Make an API call for send userNAme abnd password
+  const data = {
+     name : "Rajdip Dukare"
+  }
+  // setting the user name to Rajdip Dukare
+  setUser(data.name);
+},[])
+
+
+
   return (
     <div className="app">
+    {/* UserContext.Provider we are providing value to all our app wherevwer 
+    want just we need to wrap accordingly 
+    and we provided the value as loggedInUser : user 
+    */}
+    {/* We are passing SetUser and loggeInUser to all our App */}
+      <UserContext.Provider value={{loggedInUser : user,setUser}}>
       <Header/>
       <Outlet/>
+      </UserContext.Provider>
+
     </div>
   )
 }
