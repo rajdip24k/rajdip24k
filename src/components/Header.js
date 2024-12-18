@@ -3,6 +3,7 @@ import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnelineStatus";
 import UserContext from "../utils/userContext";
+import { useSelector } from "react-redux";
 // import userContext from "../utils/UserContext";
 // import UserContext from "../utils/UserContext";
 // import ReactDOM from "react-dom/client";
@@ -13,6 +14,11 @@ export const Header =()=>{
 const [btnNameReact,setBtnNameReact] = useState("login");
 const [count, setCount] = useState(0);
 const onlinestatus = useOnlineStatus();
+
+const cartItems = useSelector((store)=>store.cart.items);
+// With the help of useSelector we can read the store data and then we can access
+// gives access to whole store, we can subscribe to small portion of store here cart.items
+console.log("cartItems",cartItems)
 
 const {loggedInUser} = useContext(UserContext);
 
@@ -34,7 +40,7 @@ useEffect(()=>{
           <li className="px-2"><Link to="/groccery">Groccery</Link></li>
           <li className="px-2"><Link to="/about">About Us</Link></li>
           <li className="px-2"><Link to="/contact">Contact </Link></li>
-          <li className="px-2"><Link to="/cart">Cart</Link></li>
+          <li className="px-2 font-bold"><Link to="/cart">Cart -({cartItems.length})</Link></li>
 
           {
            <button className="login" onClick={()=>{btnNameReact == "login" ? setBtnNameReact("Logout") : 

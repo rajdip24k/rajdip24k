@@ -10,6 +10,8 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Cart from "./components/Cart";
 import FlightMenu from "./components/FlightMenu";
 import UserContext from "./utils/userContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 // import Groccery from "./components/Groccery"; 
 
 
@@ -37,11 +39,12 @@ useEffect(()=>{
     and we provided the value as loggedInUser : user 
     */}
     {/* We are passing SetUser and loggeInUser to all our App */}
+    <Provider store={appStore}>
       <UserContext.Provider value={{loggedInUser : user,setUser}}>
       <Header/>
       <Outlet/>
       </UserContext.Provider>
-
+      </Provider>
     </div>
   )
 }

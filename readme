@@ -6157,3 +6157,7 @@
 //     "deviceId": "e3c93c9a-0512-3872-cc61-5420ea9e4f79",
 //     "csrfToken": "kKiYxMm12lAc-OANuSZ7AHykdWTKI2BKwhkT26u0"
 // }
+
+
+https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5904779&lng=73.7271909&restaurantId=23716&catalog_qa=undefined&submitAction=ENTER
+https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5904779&lng=73.7271909&restaurantId=839126&catalog_qa=undefined&submitAction=ENTER

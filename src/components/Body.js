@@ -29,6 +29,7 @@ console.log("listOfRestaurants",listOfRestaurants)
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
+    console.log("<>>><><><><><>",json)
     console.log("Practicejson",json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
     // console.log("GetJSON",json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
     // console.log("json",json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
@@ -59,7 +60,7 @@ if(onlineStatus === false) {
     </div>
   );
 }
-// We are accesssing SetUser and loggeInUser to app and setting upon the Onchange event
+// We are accesssing SetUser and loggeInUser to app and setting upon the Onchange
 const {setUser, loggedInUser} = useContext(UserContext)
 
   return listOfRestaurants.length === 0 ? (
@@ -71,6 +72,7 @@ const {setUser, loggedInUser} = useContext(UserContext)
           type="text"
           value={seachText}
           className="border border-solid border-black"
+          data-testid="serchInput"
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
